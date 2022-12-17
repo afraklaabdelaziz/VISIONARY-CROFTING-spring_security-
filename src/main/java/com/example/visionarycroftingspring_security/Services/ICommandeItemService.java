@@ -3,11 +3,10 @@ package com.example.visionarycroftingspring_security.Services;
 
 import com.example.visionarycroftingspring_security.Entities.CommandeItem;
 
-import javax.servlet.http.HttpSession;
 import java.util.List;
 
 public interface ICommandeItemService {
-    CommandeItem save(CommandeItem commandeItems, HttpSession session);
+    CommandeItem save(CommandeItem commandeItems, Long session);
 
     void deleteByRef(String ref);
 

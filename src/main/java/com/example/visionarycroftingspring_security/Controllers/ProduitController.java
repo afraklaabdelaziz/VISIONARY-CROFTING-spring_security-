@@ -4,10 +4,10 @@ import com.example.visionarycroftingspring_security.Entities.Category;
 import com.example.visionarycroftingspring_security.Entities.Produit;
 import com.example.visionarycroftingspring_security.Services.IProduitService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.websocket.server.PathParam;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -17,7 +17,7 @@ public class ProduitController {
     @Autowired
     IProduitService produitService;
     @GetMapping
-    public String allProduit(Model model, @PathParam("category") Category category, @PathParam("price") String price){
+    public List<Produit> allProduit(@PathParam("category") Category category, @PathParam("price") String price){
 
         if (price != null){
             String min = "";
@@ -28,22 +28,25 @@ public class ProduitController {
                 min = max;
                 max = m.group();
             }
-            model.addAttribute("produits",produitService.findProduitByPrixInitialBetween(Double.parseDouble(min), Double.parseDouble(max)));
+            return produitService.findProduitByPrixInitialBetween(Double.parseDouble(min), Double.parseDouble(max));
         }
 
         else if (category != null){
-            model.addAttribute("produits",produitService.findProuitsByCategory(category));
+           return produitService.findProuitsByCategory(category);
         }else {
-            model.addAttribute("produits", produitService.getAllProduits());
+            return produitService.getAllProduits();
         }
-        model.addAttribute("category",Category.values());
-        return "produits";
     }
 
+
+
     @GetMapping("/produit/{id}")
-    public String produit(@PathVariable Long id, Model model){
-        Produit produit = produitService.getProduitById(id);
-        model.addAttribute("produit",produit);
-        return "produit";
+    public Produit produit(@PathVariable Long id){
+       return produitService.getProduitById(id);
+    }
+
+    @PostMapping("/add")
+    public Produit addProduit(@RequestBody Produit produit){
+        return produitService.addProduit(produit);
     }
 }

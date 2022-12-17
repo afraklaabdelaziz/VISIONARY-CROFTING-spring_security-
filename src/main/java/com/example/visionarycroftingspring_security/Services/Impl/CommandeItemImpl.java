@@ -6,6 +6,7 @@ import com.example.visionarycroftingspring_security.Entities.Commande;
 import com.example.visionarycroftingspring_security.Entities.CommandeItem;
 import com.example.visionarycroftingspring_security.Entities.StatusCommande;
 import com.example.visionarycroftingspring_security.Repositories.ICommandeItemRepository;
+import com.example.visionarycroftingspring_security.Services.IClientService;
 import com.example.visionarycroftingspring_security.Services.ICommandeItemService;
 import com.example.visionarycroftingspring_security.Services.ICommandeService;
 import com.example.visionarycroftingspring_security.Services.IProduitService;
@@ -13,7 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
 import java.util.List;
 @Service
@@ -25,12 +25,14 @@ public class CommandeItemImpl implements ICommandeItemService {
     ICommandeService commandeService;
     @Autowired
     IProduitService produitService;
+    @Autowired
+    IClientService clientService;
 
 
     @Override
-    public CommandeItem save(CommandeItem commandeItem, HttpSession session) {
-        Client client = (Client) session.getAttribute("client");
-        Commande commandeFind = commandeService.getCommandeClientStatusEncours(client.getId(), StatusCommande.EN_COURS);
+    public CommandeItem save(CommandeItem commandeItem, Long idClient) {
+        Client client = clientService.findById(idClient).get();
+        Commande commandeFind = commandeService.getCommandeClientStatusEncours(idClient, StatusCommande.EN_COURS);
         CommandeItem commandeItemFind = this.findByRef("2R5JX63V");
         if(commandeFind != null){
             commandeItem.setCommande(commandeFind);
@@ -61,12 +63,8 @@ public class CommandeItemImpl implements ICommandeItemService {
     @Override
     @Transactional
     public void deleteByRef(String ref) {
-        if (ref == null || ref.isEmpty()){
-            return;
-        }else {
+        if (ref != null || !ref.isEmpty())
             commandeItemRepository.deleteByReference(ref);
-        }
-
     }
 
     @Override

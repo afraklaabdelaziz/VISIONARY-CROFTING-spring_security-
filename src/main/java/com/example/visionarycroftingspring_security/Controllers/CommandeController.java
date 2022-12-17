@@ -4,10 +4,7 @@ import com.example.visionarycroftingspring_security.Entities.Commande;
 import com.example.visionarycroftingspring_security.Services.ICommandeService;
 import com.example.visionarycroftingspring_security.Services.IProduitService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 @RestController
@@ -18,7 +15,7 @@ public class CommandeController {
     @Autowired
     IProduitService produitService;
     @PostMapping("/update")
-    public Object updateCommande(@ModelAttribute Commande commande){
+    public Object updateCommande(@RequestBody Commande commande){
         if (commandeService.updateCommande(commande) == null){
             return null;
         }else {
