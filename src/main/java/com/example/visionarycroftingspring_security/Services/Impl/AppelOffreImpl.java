@@ -1,13 +1,13 @@
-package com.example.visionarycrofting.Services.Impl;
+package com.example.visionarycroftingspring_security.Services.Impl;
 
-import com.example.visionarycrofting.Entities.AppelOffre;
-import com.example.visionarycrofting.Entities.Produit;
-import com.example.visionarycrofting.Entities.StatusAppelOffre;
-import com.example.visionarycrofting.Entities.Stock;
-import com.example.visionarycrofting.Repositories.IAppelOffreRepository;
-import com.example.visionarycrofting.Services.IAppelOffreService;
-import com.example.visionarycrofting.Services.IProduitService;
 import com.example.visionarycrofting.Utiles.GenerateReference;
+import com.example.visionarycroftingspring_security.Entities.AppelOffre;
+import com.example.visionarycroftingspring_security.Entities.Produit;
+import com.example.visionarycroftingspring_security.Entities.StatusAppelOffre;
+import com.example.visionarycroftingspring_security.Entities.Stock;
+import com.example.visionarycroftingspring_security.Repositories.IAppelOffreRepository;
+import com.example.visionarycroftingspring_security.Services.IAppelOffreService;
+import com.example.visionarycroftingspring_security.Services.IProduitService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

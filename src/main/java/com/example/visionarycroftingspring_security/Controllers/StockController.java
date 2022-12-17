@@ -1,11 +1,10 @@
-package com.example.visionarycrofting.Controllers;
+package com.example.visionarycroftingspring_security.Controllers;
 
-import com.example.visionarycrofting.Entities.*;
-import com.example.visionarycrofting.Services.IAppelOffreService;
-import com.example.visionarycrofting.Services.IProduitService;
-import com.example.visionarycrofting.Services.IStockService;
+import com.example.visionarycroftingspring_security.Entities.*;
+import com.example.visionarycroftingspring_security.Services.IAppelOffreService;
+import com.example.visionarycroftingspring_security.Services.IProduitService;
+import com.example.visionarycroftingspring_security.Services.IStockService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +15,7 @@ import javax.websocket.server.PathParam;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-@Controller
+@RestController
 @RequestMapping("/stock")
 public class StockController {
     @Autowired
@@ -89,7 +88,7 @@ public class StockController {
         return "registerStock";
     }
     @PostMapping("/register")
-    public String registerClient(@Valid @ModelAttribute Stock stock,Model model, BindingResult result){
+    public String registerClient(@Valid @ModelAttribute Stock stock, Model model, BindingResult result){
         if (result.hasErrors() || stockService.saveStock(stock) == null){
             model.addAttribute("error","merci de compliter votre information");
             return "registerStock";

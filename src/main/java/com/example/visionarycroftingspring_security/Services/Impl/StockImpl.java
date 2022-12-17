@@ -1,8 +1,8 @@
-package com.example.visionarycrofting.Services.Impl;
+package com.example.visionarycroftingspring_security.Services.Impl;
 
-import com.example.visionarycrofting.Entities.Stock;
-import com.example.visionarycrofting.Repositories.IStockRepository;
-import com.example.visionarycrofting.Services.IStockService;
+import com.example.visionarycroftingspring_security.Entities.Stock;
+import com.example.visionarycroftingspring_security.Repositories.IStockRepository;
+import com.example.visionarycroftingspring_security.Services.IStockService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

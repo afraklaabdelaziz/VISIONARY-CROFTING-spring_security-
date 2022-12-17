@@ -1,22 +1,17 @@
-package com.example.visionarycrofting.Controllers;
+package com.example.visionarycroftingspring_security.Controllers;
 
-import com.example.visionarycrofting.Entities.Fournisseur;
-import com.example.visionarycrofting.Entities.StatusAppelOffre;
-import com.example.visionarycrofting.Services.IAppelOffreService;
-import com.example.visionarycrofting.Services.IFournisseurService;
+import com.example.visionarycroftingspring_security.Entities.Fournisseur;
+import com.example.visionarycroftingspring_security.Entities.StatusAppelOffre;
+import com.example.visionarycroftingspring_security.Services.IAppelOffreService;
+import com.example.visionarycroftingspring_security.Services.IFournisseurService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
 
-@Controller
+@RestController
 @RequestMapping("fournisseur")
 public class FournisseurController {
     @Autowired
@@ -44,7 +39,7 @@ public class FournisseurController {
         return "registerFournisseur";
     }
     @PostMapping("/register")
-    public String registerClient(@Valid @ModelAttribute Fournisseur fournisseur, BindingResult result,Model model){
+    public String registerClient(@ModelAttribute Fournisseur fournisseur, BindingResult result,Model model){
         if (result.hasErrors() || fournisseurService.saveFornisseur(fournisseur) == null ){
             model.addAttribute("error","merci de compliter votre information");
             return "registerFournisseur";

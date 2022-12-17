@@ -1,8 +1,8 @@
-package com.example.visionarycrofting.Services.Impl;
+package com.example.visionarycroftingspring_security.Services.Impl;
 
-import com.example.visionarycrofting.Entities.Fournisseur;
-import com.example.visionarycrofting.Repositories.IFournisseurRepository;
-import com.example.visionarycrofting.Services.IFournisseurService;
+import com.example.visionarycroftingspring_security.Entities.Fournisseur;
+import com.example.visionarycroftingspring_security.Repositories.IFournisseurRepository;
+import com.example.visionarycroftingspring_security.Services.IFournisseurService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

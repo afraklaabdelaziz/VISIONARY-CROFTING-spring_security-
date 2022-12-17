@@ -1,8 +1,8 @@
-package com.example.visionarycrofting.Repositories;
+package com.example.visionarycroftingspring_security.Repositories;
 
-import com.example.visionarycrofting.Entities.Client;
-import com.example.visionarycrofting.Entities.Commande;
-import com.example.visionarycrofting.Entities.StatusCommande;
+import com.example.visionarycroftingspring_security.Entities.Client;
+import com.example.visionarycroftingspring_security.Entities.Commande;
+import com.example.visionarycroftingspring_security.Entities.StatusCommande;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;

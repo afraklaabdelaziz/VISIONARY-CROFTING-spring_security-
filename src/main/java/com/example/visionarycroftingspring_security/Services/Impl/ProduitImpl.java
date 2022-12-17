@@ -1,12 +1,12 @@
-package com.example.visionarycrofting.Services.Impl;
+package com.example.visionarycroftingspring_security.Services.Impl;
 
-import com.example.visionarycrofting.Entities.Category;
-import com.example.visionarycrofting.Entities.CommandeItem;
-import com.example.visionarycrofting.Entities.Produit;
-import com.example.visionarycrofting.Entities.Stock;
-import com.example.visionarycrofting.Repositories.IproduitRepository;
-import com.example.visionarycrofting.Services.IProduitService;
 import com.example.visionarycrofting.Utiles.GenerateReference;
+import com.example.visionarycroftingspring_security.Entities.Category;
+import com.example.visionarycroftingspring_security.Entities.CommandeItem;
+import com.example.visionarycroftingspring_security.Entities.Produit;
+import com.example.visionarycroftingspring_security.Entities.Stock;
+import com.example.visionarycroftingspring_security.Repositories.IproduitRepository;
+import com.example.visionarycroftingspring_security.Services.IProduitService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

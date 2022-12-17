@@ -1,9 +1,8 @@
-package com.example.visionarycrofting.Repositories;
+package com.example.visionarycroftingspring_security.Repositories;
 
-import com.example.visionarycrofting.Entities.AppelOffre;
-import com.example.visionarycrofting.Entities.Category;
-import com.example.visionarycrofting.Entities.Produit;
-import com.example.visionarycrofting.Entities.Stock;
+import com.example.visionarycroftingspring_security.Entities.Category;
+import com.example.visionarycroftingspring_security.Entities.Produit;
+import com.example.visionarycroftingspring_security.Entities.Stock;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

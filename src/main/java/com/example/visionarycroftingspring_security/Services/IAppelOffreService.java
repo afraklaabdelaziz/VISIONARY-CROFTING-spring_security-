@@ -1,8 +1,9 @@
-package com.example.visionarycrofting.Services;
+package com.example.visionarycroftingspring_security.Services;
 
-import com.example.visionarycrofting.Entities.AppelOffre;
-import com.example.visionarycrofting.Entities.StatusAppelOffre;
-import com.example.visionarycrofting.Entities.Stock;
+
+import com.example.visionarycroftingspring_security.Entities.AppelOffre;
+import com.example.visionarycroftingspring_security.Entities.StatusAppelOffre;
+import com.example.visionarycroftingspring_security.Entities.Stock;
 
 import java.util.List;
 import java.util.Optional;

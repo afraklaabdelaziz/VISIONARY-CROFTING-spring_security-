@@ -1,8 +1,9 @@
-package com.example.visionarycrofting.Services;
+package com.example.visionarycroftingspring_security.Services;
 
-import com.example.visionarycrofting.Entities.Commande;
-import com.example.visionarycrofting.Entities.CommandeItem;
-import com.example.visionarycrofting.Entities.StatusCommande;
+
+import com.example.visionarycroftingspring_security.Entities.Commande;
+import com.example.visionarycroftingspring_security.Entities.CommandeItem;
+import com.example.visionarycroftingspring_security.Entities.StatusCommande;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.example.visionarycrofting.Entities;
+package com.example.visionarycroftingspring_security.Entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSetter;

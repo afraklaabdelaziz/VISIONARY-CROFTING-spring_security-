@@ -1,4 +1,4 @@
-package com.example.visionarycrofting.Entities;
+package com.example.visionarycroftingspring_security.Entities;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
