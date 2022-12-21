@@ -22,6 +22,11 @@ import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
+import java.util.Arrays;
 
 import static org.springframework.http.HttpMethod.GET;
 import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
@@ -40,36 +45,12 @@ public class SecurityConfig {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/**/auth/**")
-                .permitAll()
-
-//                //star commande & commande_item
-//                .antMatchers("/commande/update").hasAnyAuthority("client")
-//                .antMatchers("/commandeitem/add/{idClient}").hasAnyAuthority("client")
-//                .antMatchers("/cart/{idClient}").hasAnyAuthority("client")
-//                .antMatchers("/commandeitem/delete/{ref}").hasAnyAuthority("client")
-//                //end commande & commande_item
-//
-//                //star produit
-//                .antMatchers("/**/produits").hasAnyAuthority("stock","client")
-//                .antMatchers("/produits/produit/{id}").hasAnyAuthority("stock","client")
-//                .antMatchers("/produits/add").hasAnyAuthority("stock")
-//                //end produit
-//
-//                //star appelOffre
-                .antMatchers("/appelOffre/add").hasAnyAuthority("stock")
-                .antMatchers("/appelOffre/appelsoffrestock/{idStock}").hasAnyAuthority("stock")
-                .antMatchers(GET,"/appelOffre/all").hasAnyRole("fournisseur")
-                .antMatchers("/appelOffre/update").hasAnyAuthority("fournisseur")
-//                //end appelOffre
-
-                .anyRequest()
-                .authenticated()
+                .antMatchers("/**/auth/**").permitAll()
+                .antMatchers("/**/appelOffre/all").hasAuthority("fournisseur")
                 .and()
                 .sessionManagement()
                 .sessionCreationPolicy(STATELESS)
                 .and()
-                .authenticationProvider(authenticationProvider())
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
@@ -104,5 +85,7 @@ public class SecurityConfig {
         }
  };
 
+
 }
+
 }
