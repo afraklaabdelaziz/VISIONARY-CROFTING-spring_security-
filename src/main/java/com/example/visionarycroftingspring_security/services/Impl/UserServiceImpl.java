@@ -35,21 +35,6 @@ public class UserServiceImpl implements UserService {
     }
 
 
-
-//            new User("afraklaabdelaziz@gmail.com",
-//                    "password",
-//                    Collections.singleton(new SimpleGrantedAuthority("ROLE_CLIENT"))
-//            ),
-//            new User("stock@gmail.com",
-//                    "password",
-//                    Collections.singleton(new SimpleGrantedAuthority("ROLE_STOCK"))
-//            ),
-//            new User("fournisseur@gmail.com",
-//                    "password",
-//                    Collections.singleton(new SimpleGrantedAuthority("ROLE_FOURNISSEUR"))
-//            )
-
-
     @Override
     public UserDetails findByEmail(String email){
        UserApp userApp = userRepository.findByEmail(email);

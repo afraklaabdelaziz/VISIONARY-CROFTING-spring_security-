@@ -13,7 +13,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @RestController
-@RequestMapping("/produits")
+@RequestMapping("/api/produits")
 public class ProduitController {
     @Autowired
     IProduitService produitService;

@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/auth")
+@RequestMapping("/authenticate")
 public class AuthController {
 @Autowired
 AuthenticationManager authenticationManager;
@@ -30,7 +30,7 @@ public ResponseDTO register(@RequestBody UserApp user){
     return userService.addUser(user);
 }
 
-@PostMapping("/authenticate")
+@PostMapping("/login")
     public ResponseEntity<String> auth(@RequestBody AuthenticationRequest request){
     authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getEmail(),request.getPassword()));
      UserDetails user = userService.findByEmail(request.getEmail());

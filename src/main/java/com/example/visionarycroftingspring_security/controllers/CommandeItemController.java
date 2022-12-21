@@ -8,13 +8,14 @@ import com.example.visionarycroftingspring_security.services.ICommandeItemServic
 import com.example.visionarycroftingspring_security.services.ICommandeService;
 import com.example.visionarycroftingspring_security.services.IProduitService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
+@RestController
+@RequestMapping("/api/commande")
 public class CommandeItemController {
+
     @Autowired
     ICommandeItemService commandeItemService;
     @Autowired
@@ -25,9 +26,8 @@ public class CommandeItemController {
     IClientService clientService;
 
     @PostMapping("/commandeitem/add/{idClient}")
-    public String addCommandeItem(@RequestBody CommandeItem commandeItem,@PathVariable Long idClient){
-        commandeItemService.save(commandeItem,idClient);
-        return "redirect:/produits";
+    public CommandeItem addCommandeItem(@RequestBody CommandeItem commandeItem,@PathVariable Long idClient){
+        return commandeItemService.save(commandeItem,idClient);
     }
 
     @GetMapping("/cart/{idClient}")

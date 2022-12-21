@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 @RestController
-@RequestMapping("/commande")
+@RequestMapping("/api/commande")
 public class CommandeController {
     @Autowired
     ICommandeService commandeService;
