@@ -11,6 +11,7 @@ public interface IFournisseurService {
     public List<Fournisseur> getAllFornisseurs();
     public Fournisseur findByTelephone(String telephone);
     public Fournisseur update(Fournisseur fournisseur);
+    public Fournisseur findById(Long id);
 
     ResponseDTO loginFournisseur(String email, String password);
 }

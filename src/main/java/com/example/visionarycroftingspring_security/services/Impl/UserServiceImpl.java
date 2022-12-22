@@ -8,12 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -29,6 +28,7 @@ public class UserServiceImpl implements UserService {
         }else if (userRepository.findByEmail(userApp.getEmail()) != null || userRepository.findByTelephone(userApp.getTelephone()) != null ){
             return new ResponseDTO("Bad request","ce user a deja existe");
         }else {
+            userApp.setPassword(new BCryptPasswordEncoder().encode(userApp.getPassword()));
             userRepository.save(userApp);
             return new ResponseDTO("200","votre commte a ete cree avec success",userApp);
         }

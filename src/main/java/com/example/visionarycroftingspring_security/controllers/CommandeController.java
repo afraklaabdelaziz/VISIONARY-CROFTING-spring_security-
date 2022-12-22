@@ -1,6 +1,7 @@
 package com.example.visionarycroftingspring_security.controllers;
 
 import com.example.visionarycroftingspring_security.entities.Commande;
+import com.example.visionarycroftingspring_security.entities.StatusCommande;
 import com.example.visionarycroftingspring_security.services.ICommandeService;
 import com.example.visionarycroftingspring_security.services.IProduitService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,13 +15,13 @@ public class CommandeController {
     ICommandeService commandeService;
     @Autowired
     IProduitService produitService;
-    @PostMapping("/update")
-    public Object updateCommande(@RequestBody Commande commande){
+    @PostMapping("/update/{idClient}")
+    public Object updateCommande(@PathVariable Long idClient){
+        Commande commande = commandeService.getCommandeClientStatusEncours(idClient, StatusCommande.EN_COURS);
         if (commandeService.updateCommande(commande) == null){
-            return null;
+            return "this commande est null";
         }else {
-            commandeService.updateCommande(commande);
-            return null;
+            return commandeService.updateCommande(commande);
         }
 
     }

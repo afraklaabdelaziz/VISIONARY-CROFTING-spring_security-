@@ -1,5 +1,7 @@
 package com.example.visionarycroftingspring_security.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
@@ -20,7 +22,7 @@ public class UserApp {
     @Email(message = "email doit etre sous format email")
     private String email;
     @NotEmpty(message = "password doit etre un value")
-    @Size(min = 4,max = 20 , message = "password doit erte entre 4 et 20")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
     @Column(unique = true)
     @NotEmpty(message = "telephone doit etre un value")

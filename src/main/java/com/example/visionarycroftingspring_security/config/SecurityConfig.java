@@ -5,15 +5,12 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.context.annotation.Bean;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -22,13 +19,6 @@ import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.CorsConfigurationSource;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-
-import java.util.Arrays;
-
-import static org.springframework.http.HttpMethod.GET;
 import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
 
 
@@ -46,13 +36,12 @@ public class SecurityConfig {
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/**/authenticate/**").permitAll()
-                .antMatchers("/api/**").authenticated()
-                .antMatchers("/**/produits/**").hasAuthority("stock")
-                .antMatchers("/**/appelOffre/add").hasAuthority("stock")
-                .antMatchers("/**/appelOffre/appelsoffrestock/**").hasAuthority("stock")
                 .antMatchers("/api/commande/**").hasAuthority("client")
-                .antMatchers("/api/produits").hasAuthority("client")
-                .antMatchers("/**/appelOffre/**").hasAuthority("fournisseur")
+                .antMatchers("/api/produits").hasAnyAuthority("client","stock")
+                .antMatchers("/api/produits/**").hasAuthority("stock")
+                .antMatchers("/api/appelOffre/add").hasAuthority("stock")
+                .antMatchers("/api/appelOffre/appelsoffrestock/**").hasAuthority("stock")
+                .antMatchers("/api/appelOffre/**").hasAuthority("fournisseur")
                 .and()
                 .sessionManagement()
                 .sessionCreationPolicy(STATELESS)
@@ -78,8 +67,8 @@ public class SecurityConfig {
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return NoOpPasswordEncoder.getInstance();
-        //return new BCryptPasswordEncoder();
+       // return NoOpPasswordEncoder.getInstance();
+        return new BCryptPasswordEncoder(10);
     }
 
     @Bean

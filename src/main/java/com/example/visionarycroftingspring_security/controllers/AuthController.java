@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/authenticate")
 public class AuthController {
@@ -26,7 +28,7 @@ AuthenticationManager authenticationManager;
     JwtUtils jwtUtils;
 
 @PostMapping("/register")
-public ResponseDTO register(@RequestBody UserApp user){
+public ResponseDTO register(@Valid @RequestBody UserApp user){
     return userService.addUser(user);
 }
 

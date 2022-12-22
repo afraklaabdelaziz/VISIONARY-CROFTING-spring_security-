@@ -17,7 +17,7 @@ public interface IProduitService {
     boolean deleteProduit(Long id);
     List<Produit> findProuitsByCategory(Category category);
     List<Produit> findProuitsByCategoryAndStock(Stock stock,Category category);
-    void updateProduitQuantity(Produit produit1, CommandeItem commandeItems);
+    void updateProduitQuantity(Produit produit);
     List<Produit> findByStock(Stock stock);
     List<Produit> findProduitByPrixInitialBetween(Double priceMin,Double priceMax);
 

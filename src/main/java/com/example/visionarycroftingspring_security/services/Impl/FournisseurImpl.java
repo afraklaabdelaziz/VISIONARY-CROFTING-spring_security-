@@ -47,6 +47,11 @@ public class FournisseurImpl implements IFournisseurService {
     }
 
     @Override
+    public Fournisseur findById(Long id) {
+        return fournisseurRepository.findById(id).get();
+    }
+
+    @Override
     public ResponseDTO loginFournisseur(String email, String password) {
         Fournisseur  fournisseur = fournisseurRepository.findByEmail(email);
         if(fournisseur == null){

@@ -1,5 +1,8 @@
 package com.example.visionarycroftingspring_security.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonSetter;
+
 import javax.persistence.Entity;
 
 import javax.persistence.*;
@@ -23,19 +26,19 @@ public class Stock extends UserApp {
     public Stock() {
     }
 
-
+@JsonIgnore
     public List<Produit> getProduits() {
         return produits;
     }
-
+@JsonSetter
     public void setProduits(List<Produit> produits) {
         this.produits = produits;
     }
-
+@JsonIgnore
     public List<AppelOffre> getAppeleOffres() {
         return appeleOffres;
     }
-
+@JsonSetter
     public void setAppeleOffres(List<AppelOffre> appeleOffres) {
         this.appeleOffres = appeleOffres;
     }

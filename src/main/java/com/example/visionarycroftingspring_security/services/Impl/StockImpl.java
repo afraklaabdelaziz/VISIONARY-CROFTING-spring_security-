@@ -39,7 +39,7 @@ public class StockImpl implements IStockService {
 
     @Override
     public Stock findOneStock(Long id) {
-        return null;
+        return stockRepository.findById(id).get();
     }
 
     @Override

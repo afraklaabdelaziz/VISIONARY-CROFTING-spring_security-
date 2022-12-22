@@ -1,6 +1,8 @@
 package com.example.visionarycroftingspring_security.services.Impl;
 
 import com.example.visionarycroftingspring_security.entities.Client;
+import com.example.visionarycroftingspring_security.entities.Fournisseur;
+import com.example.visionarycroftingspring_security.entities.UserApp;
 import com.example.visionarycroftingspring_security.repositories.IClientRepository;
 import com.example.visionarycroftingspring_security.services.Dto.ResponseDTO;
 import com.example.visionarycroftingspring_security.services.IClientService;
@@ -23,6 +25,7 @@ public class ClientImpl implements IClientService {
         }else if (clientRepository.findByEmail(client.getEmail()) != null || clientRepository.findByTelephone(client.getTelephone()) != null ){
             return new ResponseDTO("Bad request","ce client deja existe ");
         }else {
+            clientRepository.save(client);
             return new ResponseDTO("200","votre compte a ete cree avec success",client);
         }
 
@@ -40,7 +43,7 @@ public class ClientImpl implements IClientService {
 
     @Override
     public Optional<Client> findById(Long id) {
-        return Optional.empty();
+        return clientRepository.findById(id);
     }
 
     @Override

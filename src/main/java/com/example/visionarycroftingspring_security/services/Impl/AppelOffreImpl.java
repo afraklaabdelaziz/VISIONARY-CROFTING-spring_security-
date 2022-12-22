@@ -1,13 +1,11 @@
 package com.example.visionarycroftingspring_security.services.Impl;
 
 import com.example.visionarycrofting.Utiles.GenerateReference;
-import com.example.visionarycroftingspring_security.entities.AppelOffre;
-import com.example.visionarycroftingspring_security.entities.Produit;
-import com.example.visionarycroftingspring_security.entities.StatusAppelOffre;
-import com.example.visionarycroftingspring_security.entities.Stock;
+import com.example.visionarycroftingspring_security.entities.*;
 import com.example.visionarycroftingspring_security.repositories.IAppelOffreRepository;
 import com.example.visionarycroftingspring_security.services.Dto.ResponseDTO;
 import com.example.visionarycroftingspring_security.services.IAppelOffreService;
+import com.example.visionarycroftingspring_security.services.IFournisseurService;
 import com.example.visionarycroftingspring_security.services.IProduitService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,6 +18,8 @@ public class AppelOffreImpl implements IAppelOffreService {
     IAppelOffreRepository appelOffreRepository;
     @Autowired
     IProduitService produitService;
+    @Autowired
+    IFournisseurService fournisseurService;
     @Override
     public List<AppelOffre> getAppelOffres() {
         return appelOffreRepository.findAll();
@@ -46,14 +46,16 @@ public class AppelOffreImpl implements IAppelOffreService {
     }
 
     @Override
-    public ResponseDTO updateAppelOffre(AppelOffre appelOffre) {
+    public ResponseDTO updateAppelOffre(AppelOffre appelOffre, Long idFournisseur) {
         if (appelOffre == null){
             return new ResponseDTO("Bad request","appel offre est null");
         }else {
+            Fournisseur fournisseur = fournisseurService.findById(idFournisseur);
+            appelOffre.setFournisseur(fournisseur);
             appelOffre.setStatusAppelOffre(StatusAppelOffre.VALIDE);
             Produit produit = produitService.getProduitById(appelOffre.getProduit().getId());
             produit.setQuantity(produit.getQuantity() + appelOffre.getQuantity());
-            produitService.addProduit(produit);
+            produitService.updateProduitQuantity(produit);
             appelOffreRepository.save(appelOffre);
             return new ResponseDTO("200","appel offre est modifier avc success",appelOffre);
         }
@@ -72,6 +74,6 @@ public class AppelOffreImpl implements IAppelOffreService {
 
     @Override
     public Optional<AppelOffre> findById(Long id) {
-        return Optional.empty();
+        return appelOffreRepository.findById(id);
     }
 }

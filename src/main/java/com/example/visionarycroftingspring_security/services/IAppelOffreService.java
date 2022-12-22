@@ -16,7 +16,7 @@ public interface IAppelOffreService {
 
     public boolean deleteAppelOffre(Long id);
 
-    public ResponseDTO updateAppelOffre(AppelOffre appelOffre);
+    public ResponseDTO updateAppelOffre(AppelOffre appelOffre, Long idFournisseur);
 
     public List<AppelOffre> findByStatusAppelOffre(StatusAppelOffre statusAppelOffre);
 

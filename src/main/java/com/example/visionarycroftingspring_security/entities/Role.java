@@ -1,5 +1,8 @@
 package com.example.visionarycroftingspring_security.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonSetter;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -35,10 +38,11 @@ public class Role {
         this.nom = nom;
     }
 
+    @JsonIgnore
     public List<UserApp> getUsersApp() {
         return usersApp;
     }
-
+@JsonSetter
     public void setUsersApp(List<UserApp> usersApp) {
         this.usersApp = usersApp;
     }

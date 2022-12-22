@@ -20,7 +20,7 @@ public class Commande {
 
     private Float prixTotal;
 
-@Enumerated(EnumType.STRING)
+     @Enumerated(EnumType.STRING)
     private StatusCommande status ;
 
     @OneToMany(mappedBy = "commande")

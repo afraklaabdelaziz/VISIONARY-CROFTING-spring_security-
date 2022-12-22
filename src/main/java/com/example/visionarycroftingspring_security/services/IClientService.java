@@ -2,7 +2,9 @@ package com.example.visionarycroftingspring_security.services;
 
 
 import com.example.visionarycroftingspring_security.entities.Client;
+import com.example.visionarycroftingspring_security.entities.UserApp;
 import com.example.visionarycroftingspring_security.services.Dto.ResponseDTO;
+import org.springframework.security.core.userdetails.User;
 
 import java.util.List;
 import java.util.Optional;

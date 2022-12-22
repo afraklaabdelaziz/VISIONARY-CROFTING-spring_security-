@@ -1,10 +1,7 @@
 package com.example.visionarycroftingspring_security.services.Impl;
 
 import com.example.visionarycrofting.Utiles.GenerateReference;
-import com.example.visionarycroftingspring_security.entities.Client;
-import com.example.visionarycroftingspring_security.entities.Commande;
-import com.example.visionarycroftingspring_security.entities.CommandeItem;
-import com.example.visionarycroftingspring_security.entities.StatusCommande;
+import com.example.visionarycroftingspring_security.entities.*;
 import com.example.visionarycroftingspring_security.repositories.ICommandeItemRepository;
 import com.example.visionarycroftingspring_security.services.IClientService;
 import com.example.visionarycroftingspring_security.services.ICommandeItemService;
@@ -31,7 +28,7 @@ public class CommandeItemImpl implements ICommandeItemService {
 
     @Override
     public CommandeItem save(CommandeItem commandeItem, Long idClient) {
-        Client client = clientService.findById(idClient).get();
+       Client client = clientService.findById(idClient).get();
         Commande commandeFind = commandeService.getCommandeClientStatusEncours(idClient, StatusCommande.EN_COURS);
         CommandeItem commandeItemFind = this.findByRef("2R5JX63V");
         if(commandeFind != null){

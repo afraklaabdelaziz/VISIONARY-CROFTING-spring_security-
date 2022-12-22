@@ -72,18 +72,17 @@ public class CommandeImpl implements ICommandeService {
             return new ResponseDTO("Bad request","compliter les information de commande");
         }
         else {
-            commande.setStatus(StatusCommande.EFFECTUER);
-            commande.setDate(LocalDate.now());
             List<CommandeItem> commandeItems = commande.getCommandeItems();
             for (CommandeItem commandeItem : commandeItems){
-                System.out.println(commandeItem.getQuantity());
                 Produit produit = produitService.getProduitById(commandeItem.getProduit().getId());
                 if(produit.getQuantity() < commandeItem.getQuantity()){
                     return new ResponseDTO("Bad request","quantity de produit est insurfisant");
                 }
                 produit.setQuantity(produit.getQuantity() - commandeItem.getQuantity());
-                produitService.addProduit(produit);
+                produitService.updateProduitQuantity(produit);
             }
+            commande.setStatus(StatusCommande.EFFECTUER);
+            commande.setDate(LocalDate.now());
             commandeRepository.save(commande);
             return new ResponseDTO("200","commande est valider avec success",commande);
         }

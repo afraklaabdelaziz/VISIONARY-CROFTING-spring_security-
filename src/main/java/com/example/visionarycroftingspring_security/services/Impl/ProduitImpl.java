@@ -8,6 +8,7 @@ import com.example.visionarycroftingspring_security.entities.Stock;
 import com.example.visionarycroftingspring_security.repositories.IproduitRepository;
 import com.example.visionarycroftingspring_security.services.Dto.ResponseDTO;
 import com.example.visionarycroftingspring_security.services.IProduitService;
+import com.example.visionarycroftingspring_security.services.IStockService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,13 +17,15 @@ import java.util.List;
 public class ProduitImpl implements IProduitService {
     @Autowired
     IproduitRepository produitRepository;
+    @Autowired
+    IStockService stockService;
     @Override
     public ResponseDTO addProduit(Produit produit) {
         if (produit == null){
             return new ResponseDTO("Bad request","produit est null");
         }else if(produit.getNom() == null || produit.getDescription() == null ||
                 produit.getCategory() == null || produit.getPrixInitial() == null ||
-         produit.getQuantity() == null || produit.getQuantity()<0){
+         produit.getQuantity() == null || produit.getQuantity()<0 || produit.getStock() == null){
             return new ResponseDTO("Bad request","compliter les information de produit");
         }else {
             produit.setReference(GenerateReference.applyGenerateReference());
@@ -62,8 +65,8 @@ public class ProduitImpl implements IProduitService {
     }
 
     @Override
-    public void updateProduitQuantity(Produit produit1, CommandeItem commandeItems) {
-
+    public void updateProduitQuantity(Produit produit) {
+         produitRepository.save(produit);
     }
 
     @Override

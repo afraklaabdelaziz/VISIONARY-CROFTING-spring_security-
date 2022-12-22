@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@PrimaryKeyJoinColumn(name = "id")
 public class Client extends UserApp {
 
     @OneToMany(mappedBy = "client" , fetch = FetchType.LAZY)

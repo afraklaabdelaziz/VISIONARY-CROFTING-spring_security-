@@ -1,5 +1,8 @@
 package com.example.visionarycroftingspring_security.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonSetter;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -98,11 +101,11 @@ public class Produit {
     public void setStock(Stock stock) {
         this.stock = stock;
     }
-
+     @JsonIgnore
     public List<CommandeItem> getCommandeItems() {
         return commandeItems;
     }
-
+     @JsonSetter
     public void setCommandeItems(List<CommandeItem> commandeItems) {
         this.commandeItems = commandeItems;
     }
