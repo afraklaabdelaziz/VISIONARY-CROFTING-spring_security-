@@ -1,5 +1,8 @@
 package com.example.visionarycroftingspring_security.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonSetter;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -88,11 +91,11 @@ public class Commande {
     public void setCommandeItems(List<CommandeItem> commandeItems) {
         this.commandeItems = commandeItems;
     }
-
+@JsonIgnore
     public Client getClient() {
         return client;
     }
-
+@JsonSetter
     public void setClient(Client client) {
         this.client = client;
     }

@@ -35,7 +35,7 @@ public class CommandeItemController {
         Commande commandeFind = commandeService.getCommandeClientStatusEncours(idClient, StatusCommande.EN_COURS);
             return commandeFind.getCommandeItems();
     }
-    @GetMapping("/commandeitem/delete/{ref}")
+    @DeleteMapping("/commandeitem/delete/{ref}")
     public void deleteCommandeItem(@PathVariable String ref){
         commandeItemService.deleteByRef(ref);
     }

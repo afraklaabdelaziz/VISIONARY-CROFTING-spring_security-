@@ -49,7 +49,9 @@ public class CommandeItemImpl implements ICommandeItemService {
             commandeItemRepository.save(commandeItemFind);
             return commandeItem;
         }else {
+            Produit produit = produitService.getProduitById(commandeItem.getProduit().getId());
             commandeItem.setReference(GenerateReference.applyGenerateReference());
+            commandeItem.setPrix(produit.getPrixInitial().floatValue());
             commandeItemRepository.save(commandeItem);
             return commandeItem;
         }

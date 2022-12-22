@@ -73,8 +73,10 @@ public class CommandeImpl implements ICommandeService {
         }
         else {
             List<CommandeItem> commandeItems = commande.getCommandeItems();
+            Float prixTotale = 0F;
             for (CommandeItem commandeItem : commandeItems){
                 Produit produit = produitService.getProduitById(commandeItem.getProduit().getId());
+                prixTotale+=commandeItem.getPrix();
                 if(produit.getQuantity() < commandeItem.getQuantity()){
                     return new ResponseDTO("Bad request","quantity de produit est insurfisant");
                 }
@@ -83,6 +85,7 @@ public class CommandeImpl implements ICommandeService {
             }
             commande.setStatus(StatusCommande.EFFECTUER);
             commande.setDate(LocalDate.now());
+            commande.setPrixTotal(prixTotale);
             commandeRepository.save(commande);
             return new ResponseDTO("200","commande est valider avec success",commande);
         }

@@ -15,7 +15,7 @@ public class CommandeController {
     ICommandeService commandeService;
     @Autowired
     IProduitService produitService;
-    @PostMapping("/update/{idClient}")
+    @PutMapping("/update/{idClient}")
     public Object updateCommande(@PathVariable Long idClient){
         Commande commande = commandeService.getCommandeClientStatusEncours(idClient, StatusCommande.EN_COURS);
         if (commandeService.updateCommande(commande) == null){

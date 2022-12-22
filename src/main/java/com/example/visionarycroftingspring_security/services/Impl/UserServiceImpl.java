@@ -30,7 +30,7 @@ public class UserServiceImpl implements UserService {
         }else {
             userApp.setPassword(new BCryptPasswordEncoder().encode(userApp.getPassword()));
             userRepository.save(userApp);
-            return new ResponseDTO("200","votre commte a ete cree avec success",userApp);
+            return new ResponseDTO("200","votre compte a ete cree avec success",userApp);
         }
     }
 

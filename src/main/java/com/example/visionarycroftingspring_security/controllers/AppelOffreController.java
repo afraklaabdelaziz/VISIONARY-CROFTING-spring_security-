@@ -21,7 +21,7 @@ public class AppelOffreController {
     IProduitService produitService;
     @Autowired
     IStockService stockService;
-    @PostMapping("/update/{id}/fournisseur/{idFournisseur}")
+    @PutMapping("/update/{id}/fournisseur/{idFournisseur}")
     public ResponseDTO appelOffre(@PathVariable Long id,@PathVariable Long idFournisseur){
        AppelOffre appelOffre =  appelOffreService.findById(id).get();
        return appelOffreService.updateAppelOffre(appelOffre,idFournisseur);
